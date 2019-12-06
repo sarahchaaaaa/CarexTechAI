@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 
 const NavButton = (props) => {
   return (
-    <Button color="inherit" variant="title">
+    <Button color="inherit" variant={props.variant ? props.variant : "title"} href={props.href}>
       {props.name}
     </Button>
   )
