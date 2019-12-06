@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const NavBar = () => {
+const Navbar = () => {
   const classes = useStyles();
 
   return(
@@ -33,12 +33,12 @@ const NavBar = () => {
               <TypoGraphy variant="h6" className={classes.title}>
                 Dashboard
               </TypoGraphy>
-              <NavButton name='Machine Learning' className={classes.menuButton} ></NavButton>
-              <NavButton name='Analytics' className={classes.menuButton}></NavButton>
-              <NavButton name='Home' className={classes.menuButton}></NavButton>
+              <NavButton name='Machine Learning' className={classes.menuButton} href="/MachineLearning"></NavButton>
+              <NavButton name='Analytics' className={classes.menuButton} href="/Analytics"></NavButton>
+              <NavButton name='Home' className={classes.menuButton} variant="outlined" href="/"></NavButton>
             </Toolbar>
         </AppBar>
       </div>
   )
 }
-export default NavBar
+export default Navbar

@@ -1,14 +1,16 @@
 
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import Navbar from './Navbar'
 
 class MachineLearning extends Component {
   render() {
     return (
-        <div>
-          <h2>MachineLearning</h2>
-        </div>
+      <div>
+        <Navbar />
+        <h2>Machine Learning</h2>
+      </div>
     );
   }
 }
 
-export default MachineLearning;
+export default MachineLearning
