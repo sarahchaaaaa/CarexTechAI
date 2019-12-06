@@ -33,7 +33,7 @@ const NavBar = () => {
               <TypoGraphy variant="h6" className={classes.title}>
                 Dashboard
               </TypoGraphy>
-              <NavButton name='Machine Learning' className={classes.menuButton}></NavButton>
+              <NavButton name='Machine Learning' className={classes.menuButton} ></NavButton>
               <NavButton name='Analytics' className={classes.menuButton}></NavButton>
               <NavButton name='Home' className={classes.menuButton}></NavButton>
             </Toolbar>
