@@ -27,13 +27,36 @@ class Analytics extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      type: ''
+      parameters: [
+        'activity balance',
+        'activity count',
+        'age',
+        'gender',
+        'medication',
+        'mood',
+        'fall',
+      ],
+      type: '',
+      param1: '',
+      param2: '',
     }
   }
 
   setType(newType) {
     this.setState({
       type: newType,
+    })
+  }
+
+  setParam1(newParam) {
+    this.setState({
+      param1: newParam
+    })
+  }
+
+  setParam2(newParam) {
+    this.setState({
+      param2: newParam
     })
   }
 
@@ -73,8 +96,12 @@ class Analytics extends Component {
           </SubGrid>
 
           {/* Second Row */} 
-          <Title text='Choose the Parameters' />
           <ParameterGrid
+            param1={this.state.param1}
+            param2={this.state.param2}
+            setParam1={(newParam) => this.setParam1(newParam)}
+            setParam2={(newParam) => this.setParam2(newParam)}
+            parameters={this.state.parameters}
             type={this.state.type}
           />
 
