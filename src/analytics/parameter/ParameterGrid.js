@@ -9,6 +9,7 @@ import Select from '@material-ui/core/Select'
 
 import ParameterDropdown from './ParameterDropdown'
 import SubGrid from '../SubGrid'
+import SubmitButton from './SubmitButton'
 import Title from '../Title'
 
 
@@ -48,9 +49,9 @@ const ParameterGrid = (props) => {
               onChange={(event) => props.setParam2(event.target.value)}
               value={props.param2}/>
           </FormControl>
-          <Button color='primary' variant='contained'>
+          <SubmitButton param1={props.param1} param2={props.param2}>
             Conduct Analysis
-          </Button>
+          </SubmitButton>
         </SubGrid>
       </React.Fragment>
   }
