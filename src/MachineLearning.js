@@ -6,10 +6,12 @@ import ParameterGrid from './analytics/parameter/ParameterGrid'
 import SelectionButton from './analytics/selection/SelectionButton'
 import SubGrid from './analytics/SubGrid'
 import Title from './analytics/Title'
+import { Button } from '@material-ui/core'
 
 import Dropdown from 'react-bootstrap/Dropdown'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { makeStyles } from '@material-ui/core/styles'
+import axios from 'axios'
 
 
 const useStyles = makeStyles(theme => ({
@@ -47,20 +49,15 @@ class MachineLearning extends Component {
   //   alert('Your choice of variable is: ' + this.variableState.value);
   //   event.preventDefault();
   // }
-  handleSubmit(values) {
-    const options = {
-      headers: {
-        'Content-type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Referrer-Policy': 'origin-when-cross-origin'
-      },
-      method: 'POST',
-      body: JSON.stringify({'Polls': 'Polls'})
-    }
-  
-  fetch('http://localhost:3000/apiMachineLearning', options)
-      .then(response => console.log(response))
-      .catch(error => console.error(error))
+  handleSubmit(values) {  
+    axios.post('http://localhost:3000/apiMachineLearning', {
+
+    }).then((res) => {
+      console.log('res', res)
+    }).catch((err) => {
+      console.log(err)
+    })
+
   }
 
   render() {
@@ -101,7 +98,7 @@ class MachineLearning extends Component {
 
           {/* Third Row */} 
           <Title text='Choose the Parameters' />
-
+          <Button onClick={this.handleSubmit}></Button>
           {/* Fourth Row */} 
           <Title text='Results' />
 

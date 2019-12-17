@@ -2,10 +2,13 @@
 
 import os
 from flask import Flask, render_template
-app = Flask(__name__)
+from flask_cors import CORS
 from flask import jsonify
 from flask import request
 import re
+
+app = Flask(__name__)
+cors = CORS(app)
 
 @app.route("/")
 def index():
@@ -20,6 +23,14 @@ def apiMachineLearning():
         print('hi')
         return jsonify({'Polls': 'Polls'}) if poll else jsonify({'message': 'poll not found'})
     print('hello')
+    return jsonify({'data': 'data'})
+
+@app.route("/summary")
+def summary():
+    d = {
+        'hi': 1
+    }
+    # return jsonify(d)
     return jsonify({'data': 'data'})
 
 if __name__ == "__main__":
