@@ -30,9 +30,9 @@ const theme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      light: '#F7C331',
-      main: '#F7882F',
-      dark: '#6B78AF',
+      light: '#8DB4FD',
+      main: '#B73AFA',
+      dark: '#2720C4',
       contrastText: '#fff',
     },
     text: {
@@ -42,8 +42,8 @@ const theme = createMuiTheme({
       hint: "rgba(255, 255, 255, 0.38)",
     },
     background: {
-      paper: "#DCC7AA",
-      default: "#DCC7AA"
+      paper: "#B73AFA",
+      default: "#B73AFA"
     }
   },
   typography: {

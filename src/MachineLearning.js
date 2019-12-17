@@ -1,115 +1,108 @@
 
 import React, { Component } from 'react'
+import { withStyles } from '@material-ui/core/styles'
 
 import Navbar from './Navbar'
 import ParameterGrid from './analytics/parameter/ParameterGrid'
 import SelectionButton from './analytics/selection/SelectionButton'
 import SubGrid from './analytics/SubGrid'
 import Title from './analytics/Title'
-import { Button } from '@material-ui/core'
+import { Button, Grid, Typography, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
 
 import Dropdown from 'react-bootstrap/Dropdown'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { makeStyles } from '@material-ui/core/styles'
 import axios from 'axios'
+import background from './images/background.png'
 
 
-const useStyles = makeStyles(theme => ({
+export default withStyles((theme) => ({
   offset: {
     paddingTop: '1em'
   },
   root: {
     flexGrow: 1,
+    backgroundImage: `url(${background})`,
+    backgroundSize: 'cover',
+    // backgroundColor: theme.palette.background.default,
+    color: theme.palette.text.primary,
+    height: '100vh',
+    padding: '50px 150px'
   },
-}))
-
-const dependent = [
-  { label: 'Falls', value: 1},
-  { label: 'Medication', value: 2},
-  { label: 'Moodscore', value: 3},
-];
-
-class MachineLearning extends Component {
-  constructor(props) {
-    super(props);
-    // this.machineState = {value: 0};
-    this.variableState = {value: 0};
-    this.state = {value: 0};
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  formControl: {
+    // margin: theme.spacing(1),
+    minWidth: 200,
+  },
+  container: {
+    paddingLeft: 200,
+    paddingRight: 200
+    // margin: '20px 100px'
   }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-    console.log(event.target.value);
+}))(class extends Component {
+  
+  state = {
+    learning: '',
+    variable: ''
   }
-
-  // handleSubmit(event) {
-  //   alert('Your choice of variable is: ' + this.machineState.value);
-  //   alert('Your choice of variable is: ' + this.variableState.value);
-  //   event.preventDefault();
-  // }
-  handleSubmit(values) {  
+  handleSubmit = () => {  
+    const { learning, variable } = this.state
     axios.post('http://localhost:3000/apiMachineLearning', {
-
+      learning,
+      variable
     }).then((res) => {
       console.log('res', res)
     }).catch((err) => {
       console.log(err)
     })
+  }
 
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   render() {
-    const classes = this.props
+    const { classes } = this.props
+    const { learning, variable } = this.state
+    const learnings = ['Neural Networks', 'Linear Regression', 'Decision Tree', 'Naive Bayes', 'SVM']
+    const variables = ['Falls', 'Medication', 'Moodscore']
     return (
-      <div>
+      <div className={classes.root}>
         <Navbar />
-
-        {/* Padding */}
-        <div className={classes.offset} />
-
-        {/* Main Container */} 
-        <SubGrid className={classes.root} spacing={3} >
-          <Title text='Choose the Type of Machine Learning' />
-          {/* First Row */} 
-            <label>
-              <select value={this.state.value} onChange={this.handleChange}>
-                <option value="Neural Networks">Neural Networks</option>
-                <option value="Linear Regression">Linear Regression</option>
-                <option value="Decision Tree">Decision Tree</option>
-                <option value="Naive Bayes">Naive Bayes</option>
-                <option value="SVM">SVM</option>
-              </select>
-            </label>
-          {/* Second Row */} 
-          <Title text='Choose the Variable to Predict' />
-          <form onSubmit={this.handleSubmit}>
-              <label>
-                <select value={this.variableState.value} onChange={this.handleChange}>
-                  <option value="Falls">Falls</option>
-                  <option value="Medication">Medication</option>
-                  <option value="Moodscore">Moodscore</option>
-                </select>
-              </label>
-              <input type="submit" value="Submit" />
-              {/* Predicted value of how many falls */}
-          </form>
-
-          {/* Third Row */} 
-          <Title text='Choose the Parameters' />
-          <Button onClick={this.handleSubmit}></Button>
-          {/* Fourth Row */} 
-          <Title text='Results' />
-
-        </SubGrid>
-
-        {/* Form Choice for Dependent Variables */}
-        {/* Predicted value of whether or not they have a fall */}
-        
+        <Grid container direction='column' justify='space-around' alignItems='center' spacing={4} className={classes.container}>
+          <Grid item container direction='row' justify='space-between' alignItems='center'>
+            <Typography variant='h4'>Choose the Type of Machine Learning</Typography>
+            <FormControl className={classes.formControl}>
+              <InputLabel id="demo-simple-select-label">Learning</InputLabel>
+              <Select
+                value={learning}
+                name = 'learning'
+                onChange={this.handleChange}
+              >
+                {learnings.map((item, i) => {
+                  return <MenuItem value={item} key={i}>{item}</MenuItem>
+                })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item container direction='row' justify='space-between' alignItems='center'>
+            <Typography variant='h4'>Choose the Variable to Predict</Typography>
+            <FormControl className={classes.formControl}>
+              <InputLabel id="demo-simple-select-label">Variable</InputLabel>
+              <Select
+                value={variable}
+                name = 'variable'
+                onChange={this.handleChange}
+              >
+                {variables.map((item, i) => {
+                  return <MenuItem value={item} key={i}>{item}</MenuItem>
+                })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Button onClick={this.handleSubmit} variant='contained'>Submit</Button>
+        </Grid>
       </div>
-    );
+    )
   }
-}
 
-export default MachineLearning
+})
