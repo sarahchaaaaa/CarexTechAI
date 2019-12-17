@@ -3,28 +3,31 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import TypoGraphy from '@material-ui/core/Typography'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
+import { AppBar, Toolbar, Typography, Grid } from '@material-ui/core'
 import NavButton from './NavButton'
 
 const useStyles = makeStyles(theme => ({
   homeButton: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-    },
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(1),
+  },
   menuButton: {
-    },
+    padding: theme.spacing(2),
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2)
+  },
   root: {
       flexGrow: 1,
-    },
+  },
   offset: theme.mixins.toolbar,
   title: {
-      flexGrow: 1,
-    },
+    flexGrow: 1,
+  },
+  bar: {
+    padding: '10px 150px',
+    background: 'transparent', 
+    boxShadow: 'none',
+  }
 }))
 
 const Navbar = () => {
@@ -32,11 +35,11 @@ const Navbar = () => {
 
   return(
       <React.Fragment>
-        <AppBar position="fixed">
+        <AppBar position="fixed" className={classes.bar}>
             <Toolbar>
-              <TypoGraphy variant="h6" className={classes.title}>
+              <Typography variant="h5" className={classes.title}>
                 Dashboard
-              </TypoGraphy>
+              </Typography>
               <NavButton name='Machine Learning' className={classes.menuButton} href="/MachineLearning"></NavButton>
               <NavButton name='Analytics' className={classes.menuButton} href="/Analytics"></NavButton>
               <NavButton name='Home' className={classes.homeButton} variant="outlined" href="/"></NavButton>
