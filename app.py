@@ -60,7 +60,7 @@ def apiMachineLearning():
 
         print("PREDICTION", prediction)
 
-        return jsonify({'prediction': int(prediction[0])})
+        return jsonify({'prediction': round(float(prediction[0]))})
         
     return jsonify({'data': 'data'})
 
