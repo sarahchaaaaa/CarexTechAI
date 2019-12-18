@@ -3,12 +3,12 @@ import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import Navbar from './Navbar'
-import { Button, Grid, Typography, FormControl, InputLabel, Select, MenuItem, MobileStepper } from '@material-ui/core'
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import { Button, Grid, Typography, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import axios from 'axios'
 import background from './images/background.png'
+var clusterings = require.context('../public/clusters')
+var correlations = require.context('../public/correlation')
+
 
 export default withStyles((theme) => ({
   root: {
@@ -39,7 +39,8 @@ export default withStyles((theme) => ({
   state = {
     analysis: '',
     var1: '',
-    var2: ''
+    var2: '',
+    show: false
   }
 
   
@@ -52,23 +53,34 @@ export default withStyles((theme) => ({
     if (analysis === '' || var1 === '' || var2 === '') {
         window.alert("Error: Required Fields Not Filled Out!")
     } else {
+        this.setState({'show': true})
         console.log("CLICKE")
     }
   }
+    getImage = () => {
+        var { analysis, var1, var2 } = this.state
+        var1 = var1.replace(' ', '')
+        var2 = var2.replace(' ', '')
+        if (analysis == 'clustering') {
+            return clusterings(`./${var1}vs${var2}.png`)
+        } else {
+            return correlations(`./${var1}vs${var2}.png`)
+        }
+    }
 
   render() {
     const { classes } = this.props
-    const { analysis, var1, var2 } = this.state
+    const { analysis, var1, var2, show } = this.state
 
     const variables = [
         'Age',
         'Gender',
-        'Activity balance',
-        'Activity count',
+        'Activity Balance',
+        'Activity Count',
         'Mood',
         'Medication',
-        'Fall',
-      ]
+        'Falls',
+    ]
     return (
       <div className={classes.root}>
         <Navbar />
@@ -115,6 +127,7 @@ export default withStyles((theme) => ({
             </FormControl>
           </Grid>
           <Button onClick={this.handleSubmit} className={classes.submit}>Conduct Analysis</Button>
+          {show ? <img src={this.getImage()}></img> : <Grid></Grid>}
         </Grid>
       </div>
     )

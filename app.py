@@ -24,11 +24,13 @@ def index():
 nn_falls = load_model('./models/nn_falls.h5')
 svm_falls = pickle.load(open('./models/svm_falls.sav', 'rb'))
 tree_falls = pickle.load(open('./models/tree_falls.sav', 'rb'))
+linear_falls = pickle.load(open('./models/linear_falls.sav', 'rb'))
 
 # Medication
 nn_medication = load_model('./models/nn_medication.h5')
 svm_medication = pickle.load(open('./models/svm_medication.sav', 'rb'))
 tree_medication = pickle.load(open('./models/tree_medication.sav', 'rb'))
+linear_falls = pickle.load(open('./models/linear_medication.sav', 'rb'))
 
 @app.route("/predict", methods= ['GET', 'POST'])
 def apiMachineLearning():
@@ -53,6 +55,9 @@ def apiMachineLearning():
             prediction = svm_falls.predict(arr) if variable == 'Falls' else svm_medication.predict(arr)
         elif learning == 'Decision Tree':
             prediction = tree_falls.predict(arr) if variable == 'Falls' else tree_medication.predict(arr)
+        elif learning == 'Linear Regression':
+            prediction = linear_falls.predict(arr) if variable == 'Falls' else linear_medication.predict(arr)
+
         print("PREDICTION", prediction)
 
         return jsonify({'prediction': int(prediction[0])})
