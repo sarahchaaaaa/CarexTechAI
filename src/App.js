@@ -31,7 +31,7 @@ const theme = createMuiTheme({
     type: 'dark',
     primary: {
       light: '#8DB4FD',
-      main: '#B73AFA',
+      main: '#28889F',
       dark: '#2720C4',
       contrastText: '#fff',
     },
@@ -42,8 +42,8 @@ const theme = createMuiTheme({
       hint: "rgba(255, 255, 255, 0.38)",
     },
     background: {
-      paper: "#B73AFA",
-      default: "#B73AFA"
+      paper: "#28889F",
+      default: "#28889F"
     }
   },
   typography: {
