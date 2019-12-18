@@ -10,7 +10,7 @@ import {
 
 import Home from './Home';
 import MachineLearning from './MachineLearning';
-import Analytics from './Analytics';
+import Analytics from './Analytic';
 
 import sansLight from './fonts/SourceSansPro-Light.ttf'
 

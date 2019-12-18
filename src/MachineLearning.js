@@ -91,6 +91,8 @@ export default withStyles((theme) => ({
     const { variable } = this.state
     if (variable) {
       this.setState({'check': true})
+    } else {
+      window.alert("Error: Required Fields Not Filled Out!")
     }
   }
 

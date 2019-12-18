@@ -12,7 +12,7 @@ import ParameterGrid from './analytics/parameter/ParameterGrid'
 import SelectionButton from './analytics/selection/SelectionButton'
 import SubGrid from './analytics/SubGrid'
 import Title from './analytics/Title'
-
+import background from './images/background.png'
 
 const useStyles = makeStyles(theme => ({
   offset: {
@@ -20,6 +20,9 @@ const useStyles = makeStyles(theme => ({
   },
   root: {
     flexGrow: 1,
+    backgroundImage: `url(${background})`,
+    backgroundSize: 'cover',
+    height: '100vh'
   },
 }))
 
@@ -61,9 +64,11 @@ class Analytics extends Component {
   }
 
   render() {
-    const classes = this.props
+    const classes = this.props  
+    console.log(classes)
     return (
-      <div>
+      <div style={{backgroundImage: `url(${background})`,
+      backgroundSize: 'cover', height: '100vh'}}>
         {/* Navbar */}
         <Navbar />
 
@@ -71,7 +76,7 @@ class Analytics extends Component {
         <div className={classes.offset} />
 
         {/* Main Container */} 
-        <SubGrid className={classes.root} spacing={3} >
+        <SubGrid spacing={3} >
           <Title text='Choose the Type of Analysis' />
 
           {/* First Row */} 
