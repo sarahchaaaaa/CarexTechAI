@@ -38,7 +38,7 @@ const Navbar = () => {
         <AppBar position="fixed" className={classes.bar}>
             <Toolbar>
               <Typography variant="h5" className={classes.title}>
-                Dashboard
+                Smile Analytics
               </Typography>
               <NavButton name='Machine Learning' className={classes.menuButton} href="/MachineLearning"></NavButton>
               <NavButton name='Analytics' className={classes.menuButton} href="/Analytics"></NavButton>

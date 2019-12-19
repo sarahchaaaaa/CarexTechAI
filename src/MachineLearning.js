@@ -16,7 +16,8 @@ export default withStyles((theme) => ({
   },
   root: {
     flexGrow: 1,
-    backgroundImage: `url(${background})`,
+    background: `linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${background})`,
+    // backgroundImage: `url(${background})`,
     backgroundSize: 'cover',
     color: theme.palette.text.primary,
     height: '100vh',
@@ -114,9 +115,20 @@ export default withStyles((theme) => ({
     return (
       <div className={classes.root}>
         <Navbar />
-        <Grid container direction='column' justify='space-around' alignItems='center' spacing={4} className={classes.container}>
+        <Grid container direction='column' justify='space-around' alignItems='center' spacing={3} className={classes.container}>
+          <Grid item>
+          <Typography variant='body1'>
+          This page uses pretrained models to take in user inputs and predict either the number of falls or the number of medications a senior will have within a given month. The first step is to select the model type and the variable that is being predicted. 
+          </Typography>
+          </Grid>
+          <Grid item>
+          <Typography variant='body1'>
+          After clicking next, fields to enter values for all independent variables should be filled out and submitted. The application will run these parameters through the chosen model and display the predicted number of falls/medications the senior with the given values will have. 
+          </Typography>
+          </Grid>
+          
           <Grid item container direction='row' justify='space-between' alignItems='center'>
-            <Typography variant='h4'>Choose the Type of Machine Learning</Typography>
+            <Typography variant='h4'>Choose the Type of Prediction</Typography>
             <FormControl className={classes.formControl}>
               <InputLabel id="demo-simple-select-label">Learning</InputLabel>
               <Select

@@ -17,7 +17,7 @@ export default withStyles((theme) => ({
   },
   root: {
     flexGrow: 1,
-    backgroundImage: `url(${background})`,
+    background: `linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${background})`,
     backgroundSize: 'cover',
     // backgroundColor: theme.palette.background.default,
     color: theme.palette.text.primary,
@@ -39,11 +39,14 @@ export default withStyles((theme) => ({
       <div className={classes.root}>
         <Navbar />
         <Grid container direction='row' justify='space-around' alignItems='center' spacing={24}>
-          <img src={aikoo} className={classes.gif} />
-          <Typography variant='h1' className={classes.main}>Welcome</Typography>
-        </Grid>
-        <Grid container direction='row' justify='center' alignItems='baseline'>
-          <p>Description about project goes here.</p>
+          <Grid item xs={6}>
+            <img src={aikoo} className={classes.gif} />
+          </Grid>
+          <Grid item container direction='column' xs={6}>
+            <Typography variant='h1' className={classes.main}>Welcome</Typography>
+            <Typography variant='h6'>
+            This application is used to predict outcomes of interest in senior living such as the number of falls a senior is predicted to have and the number of medications a senior is predicted to take within a given month.               </Typography>
+          </Grid>
         </Grid>
       </div>
     )

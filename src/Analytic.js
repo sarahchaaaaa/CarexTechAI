@@ -13,7 +13,7 @@ var correlations = require.context('../public/correlation')
 export default withStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundImage: `url(${background})`,
+    background: `linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${background})`,
     backgroundSize: 'cover',
     color: theme.palette.text.primary,
     height: '100vh',
@@ -84,7 +84,16 @@ export default withStyles((theme) => ({
     return (
       <div className={classes.root}>
         <Navbar />
-        <Grid container direction='column' justify='space-around' alignItems='center' spacing={4} className={classes.container}>
+        <Grid container direction='column' justify='space-around' alignItems='center' spacing={3} className={classes.container}>
+          <Grid item>
+          <Typography variant='body1'>
+          This page uses different analytic techniques to display the correlation or clusterings between two chosen variables. This will allow users to better visualize the interaction between variables.            </Typography>
+          </Grid>
+          <Grid item>
+          <Typography variant='body1'>
+          The first step is to select either correlation or clustering. After clicking ‘Conduct Analysis’, the correlation between the two variables will we displayed on the page. These images are dynamically rendered based off the user input.
+          </Typography>
+          </Grid>
           <Grid item container direction='row' justify='space-between' alignItems='center'>
             <Typography variant='h4'>Choose the Type of Analysis</Typography>
             <FormControl className={classes.formControl}>
