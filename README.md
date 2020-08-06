@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Background
+CarexTech is a startup that focuses on the well-being of the elderly. We partnered with them to create a AI project to predict the likelihood of their falls in order to see who is the high-risk patients.
+
 ## Available Scripts
 
 In the project directory, you can run:
